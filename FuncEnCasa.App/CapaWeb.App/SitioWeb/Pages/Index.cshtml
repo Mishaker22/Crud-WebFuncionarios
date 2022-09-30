@@ -1,0 +1,113 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Programming Life";
+}
+
+
+<div class="caja">
+    <div class="labeles">
+        <b><i><label for="lblFuncionario">Datos Funcionario</label></i></b>
+    </div>
+    ><div class="cTextos">
+        <center>
+            <p>
+                <font size="5px" color=#FFFFFF face="Tw Cen MT">
+                    <i>Consulte Si se encuentra registrado como funcionario </i>
+                </font>
+            </p>
+        </center>
+        <br />
+        <p class="pTexto">
+            <font size="4px" color=#FFFFFF face="Tw Cen MT">
+                <i>Seleccione Tipo de documento: </i>
+            </font>
+        </p>
+        <select name="tipoDocumento" id="idTipoDocumento">
+            <option value="Cedula">Cedula</option>
+            <option value="Cedula de extranjeria">Cedula Extranjeria</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+        </select>
+        <br />
+        <p class="pTexto">
+            <font size="4px" color=#FFFFFF face="Tw Cen MT">
+                <i>Numero de Documento: </i>
+            </font>
+        </p>
+        <input type="text" id="idDocumento" placeholder="Digite el numero" name="documento" />
+        <br />
+        <button class="btnConsultar" id="btnConsultar">Consultar</button>
+        <button class="btnAgregar"><a asp-page=".\Funcionario\Create" >Agregar Funcionario</a></button>
+    </div>
+</div>
+<div class="contenedorTabla">
+    <h2>
+        Tabla De Funcionarios
+    </h2>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Genero</th>
+                <th>Fecha Nacimiento</th>
+                <th>RH</th>
+                <th>Sucursal</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Ciudad</th>
+                <th>Direccion</th>
+                <th>Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var funcionario in Model.funcionarios)
+            {
+                <tr>
+                    <td style="font-size:12px;">@funcionario.usuarioId</td>
+                    <td>@funcionario.nombre</td>
+                    <td>@funcionario.apellido</td>
+                    <td>@funcionario.genero</td>
+                    <td>@funcionario.fechaNacimiento.ToString("dd/MM/yyyy")</td>
+                    <td>@funcionario.tipoSanguineo</td>
+                    <td>@funcionario.sucursal.nombreSucursal </td>
+                    @if(funcionario.correo==null)
+                    {
+                        <td style="color:red;">Sin correo</td>
+                    }else
+                    {
+                        <td style="font-size:10px;">@funcionario.correo.correo <br />  -@funcionario.idTipoContactoCorreo</td>   
+                    }
+                    @if(funcionario.telefono==null)
+                    {
+                        <td td style="color:red;">Sin Telefono</td>
+                    }else
+                    {
+                        <td style="font-size:10px;">@funcionario.telefono.numeroTel <br /> - @funcionario.idTipoContactoTelefono</td>                      
+                    }
+                    <td>@funcionario.ciudad.nombreCiudad</td>
+                    <td>@funcionario.direccion.direccion</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <button class="btnMod" id="btnModificar"><a asp-page=".\Funcionario\Edit" asp-route-id="@funcionario._Id">Modificar</a></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btnReset" id="btnEliminar"><a asp-page=".\Funcionario\Delete" asp-route-id="@funcionario._Id">Eliminar</a></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>

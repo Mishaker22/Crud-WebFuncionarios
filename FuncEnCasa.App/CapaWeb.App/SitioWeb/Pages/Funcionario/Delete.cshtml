@@ -1,0 +1,19 @@
+﻿@page
+@model SitioWeb.Pages_Funcionario.DeleteModel
+@{
+    ViewData["Title"] = "Programming Life-Eliminar";
+}
+<div class="contenedorEliminar" id="divEliminar">
+    <div class="contenedorDelete">
+        <form method='Post'>
+            <input type="hidden" asp-for="funcionario._Id" />
+            <h3>Estas Seguro de eliminar al Funcionario: </h3>
+            <br>
+            <h4>Identificacion @Model.funcionario.usuarioId : @Model.funcionario.nombre @Model.funcionario.apellido
+            </h4>
+            <input type="submit" value="Borrar" class="btnConfirmar" />
+        </form>
+        <a asp-page="/Index"><button class="btnCancelar">Regresar</button></a>
+
+    </div>
+</div>

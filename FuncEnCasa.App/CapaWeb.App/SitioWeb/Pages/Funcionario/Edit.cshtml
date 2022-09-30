@@ -1,0 +1,30 @@
+﻿@page
+@model SitioWeb.Pages_Funcionario.EditModel
+@{
+    ViewData["Title"] = "Programming Life-Eliminar";
+}
+<div class="contenedorEditar" >
+    <div class="contenedorEdit">
+        <form method='Post'>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class=form-group>
+                <label asp-for="funcionario.nombre" class="control-label">Nombre de Funcionario</label>
+                <input asp-for="funcionario.nombre" class="form-control"/>
+                <span asp-validation-for="funcionario.nombre" class="text-danger"></span>
+            </div>
+
+            <div class=form-group>
+                <label asp-for="funcionario.apellido" class="control-label">Apellido De funcionario</label>
+                <input asp-for="funcionario.apellido" class="form-control"/>
+                <span asp-validation-for="funcionario.apellido" class="text-danger"></span>
+            </div>
+            
+            <input type="hidden" asp-for="funcionario._Id"/>
+
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btnCancelar">
+            </div>
+        </form>
+    </div>
+</div>
